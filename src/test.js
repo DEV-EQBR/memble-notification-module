@@ -4,6 +4,6 @@ const notificationService = new NotificationService();
 
 const key = 'membershipRegistered';
 const languageCode = 'ko';
-const data = {};
+const data = { ticketId: 1 };
 
 notificationService.getServiceNotification(key, languageCode, data);

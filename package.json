@@ -7,7 +7,8 @@
     "test": "node src/test.js"
   },
   "dependencies": {
-    "prettier": "^2.8.0"
+    "prettier": "^2.8.0",
+    "uuid": "^11.0.2"
   },
   "files": [
     "src"
