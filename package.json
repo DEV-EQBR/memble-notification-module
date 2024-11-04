@@ -1,0 +1,17 @@
+{
+  "name": "memble-notification-module",
+  "version": "1.0.0",
+  "description": "memble-notification-module",
+  "main": "src/index.js",
+  "scripts": {},
+  "dependencies": {
+    "prettier": "^2.8.0"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lonely-wolf-howl/memble-notification-module.git"
+  }
+}
