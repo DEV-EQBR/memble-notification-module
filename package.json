@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "memble-notification-module",
   "main": "src/index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "node src/test.js"
+  },
   "dependencies": {
     "prettier": "^2.8.0"
   },

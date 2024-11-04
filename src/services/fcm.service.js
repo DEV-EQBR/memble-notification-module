@@ -15,8 +15,6 @@ class FcmService {
           .setDefaultOption()
           .setContent(data.title, message)
           .setImage(data.image)
-          .setSound(data.sound ? data.sound.split('.')[0] : undefined)
-          .setNotificationCount(data.badgeCount)
           .setClickAction(data.clickAction)
           .setTitleLocKey(data.titleLocKey)
           .setTitleLocArgs(data.titleLocArgs)
@@ -46,8 +44,6 @@ class FcmService {
             'loc-args': data.bodyLocArgs,
           })
           .setCategory(data.clickAction)
-          .setSound(data.sound)
-          .setBadge(data.badgeCount)
           .setSubtitle(data.subtitle)
           .build()
       )
