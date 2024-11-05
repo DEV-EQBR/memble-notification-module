@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "user-test": "node src/tests/user-test.js",
-    "coupon-test": "node src/tests/coupon-test.js"
+    "coupon-test": "node src/tests/coupon-test.js",
+    "shop-test": "node src/tests/shop-test.js"
   },
   "dependencies": {
     "axios": "^1.7.7",

@@ -4,6 +4,8 @@ const UserTemplateEn = require('../templates/user-en.template');
 const UserTemplateKo = require('../templates/user-ko.template');
 const CouponTemplateEn = require('../templates/coupon-en.template');
 const CouponTemplateKo = require('../templates/coupon-ko.template');
+const ShopTemplateEn = require('../templates/shop-en.template');
+const ShopTemplateKo = require('../templates/shop-ko.template');
 
 class NotificationService {
   constructor() {
@@ -15,6 +17,10 @@ class NotificationService {
       coupon: {
         en: CouponTemplateEn,
         ko: CouponTemplateKo,
+      },
+      shop: {
+        en: ShopTemplateEn,
+        ko: ShopTemplateKo,
       },
     };
   }
