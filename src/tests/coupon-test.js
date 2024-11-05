@@ -14,7 +14,9 @@ const payload = {
     targets: [142803],
     platform: 'MOBILE',
     badgeType: 'UPDATE',
-    url: 'memble://home/membership=true&ticket=true',
+    customData: {
+      url: 'memble://home/membership=true&ticket=true',
+    },
   },
 };
 

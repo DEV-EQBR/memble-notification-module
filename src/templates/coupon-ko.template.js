@@ -18,7 +18,7 @@ const CouponTemplateKo = {
       titleLocArgs: (data) => undefined,
       bodyLocKey: (data) => undefined,
       bodyLocArgs: (data) => undefined,
-      data: (data) => ({ url: data.url }),
+      data: (data) => data.customData,
     },
   },
 };
