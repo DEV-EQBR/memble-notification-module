@@ -1,4 +1,5 @@
 const PushNotificationBuilder = require('./push-notification-builder.service');
+const ServiceMessageBuilder = require('./service-message-builder.service');
 const CouponTemplateEn = require('../templates/coupon-en.template');
 const CouponTemplateKo = require('../templates/coupon-ko.template');
 
@@ -10,25 +11,37 @@ class NotificationService {
     };
   }
 
-  getServiceNotification(key, languageCode, data) {
-    const templateGroup = this.templates[languageCode];
+  getServiceNotification({ key, language, data }) {
+    const templateGroup = this.templates[language];
     const template = templateGroup[key];
+    const payload = template.payload;
+    const content = template.content;
 
-    const pushObject = new PushNotificationBuilder()
-      .setTitle(template.title(data))
-      .setSubtitle(template.subtitle(data))
-      .setBody(template.body(data))
-      .setImage(template.image(data))
-      .setClickAction(template.clickAction(data))
-      .setTitleLocKey(template.titleLocKey(data))
-      .setTitleLocArgs(template.titleLocArgs(data))
-      .setBodyLocKey(template.bodyLocKey(data))
-      .setBodyLocArgs(template.bodyLocArgs(data))
-      .setData(template.data(data))
+    const payloadObject = new ServiceMessageBuilder()
+      .setAppId(data.appId)
+      .setServiceIdentifier(data.serviceIdentifier)
+      .setTargets(data.targets)
+      .setPlatform(data.platform)
+      .setBadgeType(data.badgeType)
       .build();
 
-    // todo: delete
-    console.log(pushObject);
+    const pushObject = new PushNotificationBuilder()
+      .setTitle(content.title(data))
+      .setSubtitle(content.subtitle(data))
+      .setBody(content.body(data))
+      .setImage(content.image(data))
+      .setClickAction(content.clickAction(data))
+      .setTitleLocKey(content.titleLocKey(data))
+      .setTitleLocArgs(content.titleLocArgs(data))
+      .setBodyLocKey(content.bodyLocKey(data))
+      .setBodyLocArgs(content.bodyLocArgs(data))
+      .setData(content.data(data))
+      .build();
+
+    return {
+      ...payloadObject,
+      ...pushObject,
+    };
   }
 }
 
