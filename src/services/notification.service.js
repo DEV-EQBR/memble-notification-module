@@ -1,19 +1,26 @@
 const PushNotificationBuilder = require('./push-notification-builder.service');
 const ServiceMessageBuilder = require('./service-message-builder.service');
+const UserTemplateEn = require('../templates/user-en.template');
+const UserTemplateKo = require('../templates/user-ko.template');
 const CouponTemplateEn = require('../templates/coupon-en.template');
 const CouponTemplateKo = require('../templates/coupon-ko.template');
 
 class NotificationService {
   constructor() {
     this.templates = {
-      en: CouponTemplateEn,
-      ko: CouponTemplateKo,
+      user: {
+        en: UserTemplateEn,
+        ko: UserTemplateKo,
+      },
+      coupon: {
+        en: CouponTemplateEn,
+        ko: CouponTemplateKo,
+      },
     };
   }
 
-  getServiceNotification({ key, language, data }) {
-    const templateGroup = this.templates[language];
-    const template = templateGroup[key];
+  getServiceNotification({ domain, key, language, data }) {
+    const template = this.templates[domain][language][key];
 
     const payload = template.payload;
     const content = template.content;
@@ -25,7 +32,6 @@ class NotificationService {
       .setPlatform(payload.platform(data))
       .setBadgeType(payload.badgeType(data))
       .build();
-    console.log(payloadObject);
 
     const pushObject = new PushNotificationBuilder()
       .setTitle(content.title(data))

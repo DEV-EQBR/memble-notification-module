@@ -5,6 +5,7 @@ const config = require('../config');
 const notificationService = new NotificationService();
 
 const payload = {
+  domain: 'coupon',
   key: 'membershipRegistered',
   language: 'ko',
   data: {
@@ -13,6 +14,7 @@ const payload = {
     targets: [142803],
     platform: 'MOBILE',
     badgeType: 'UPDATE',
+    url: 'memble://home/membership=true&ticket=true',
   },
 };
 
