@@ -1,9 +1,6 @@
 const axios = require('axios');
-const NotificationService = require('./services/notification.service');
-
-require('dotenv').config();
-
-const MEMBLE_APP_ID = process.env.MEMBLE_APP_ID;
+const NotificationService = require('../services/notification.service');
+const config = require('../config');
 
 const notificationService = new NotificationService();
 
@@ -11,7 +8,7 @@ const payload = {
   key: 'membershipRegistered',
   language: 'ko',
   data: {
-    appId: MEMBLE_APP_ID,
+    appId: config.membleAppId,
     serviceIdentifier: 'memble',
     targets: [142803],
     platform: 'MOBILE',
@@ -23,14 +20,11 @@ const body = notificationService.getServiceNotification(payload);
 
 console.log(body);
 
-const url = 'http://localhost:3000/v1/push-notifications/send-message';
-// const url = 'http://43.200.220.233:11995/v1/push-notifications/send-message';
-
 axios
-  .post(url, body)
+  .post(config.sendMessageUrl, body)
   .then((response) => {
-    console.log(response?.data);
+    console.log(response.data);
   })
   .catch((error) => {
-    console.error(error?.message);
+    console.error(error.message);
   });
