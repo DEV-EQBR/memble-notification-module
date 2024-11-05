@@ -1,16 +1,17 @@
-require('dotenv').config();
 const axios = require('axios');
 const NotificationService = require('./services/notification.service');
 
-const notificationService = new NotificationService();
+require('dotenv').config();
 
-const membleAppId = process.env.MEMBLE_APP_ID;
+const MEMBLE_APP_ID = process.env.MEMBLE_APP_ID;
+
+const notificationService = new NotificationService();
 
 const payload = {
   key: 'membershipRegistered',
   language: 'ko',
   data: {
-    appId: membleAppId,
+    appId: MEMBLE_APP_ID,
     serviceIdentifier: 'memble',
     targets: [142803],
     platform: 'MOBILE',

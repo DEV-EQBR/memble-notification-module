@@ -4,7 +4,7 @@ const CouponTemplateKo = {
     payload: {
       appId: (data) => data.appId,
       serviceIdentifier: (data) => data.serviceIdentifier,
-      targets: (data) => [data.targets],
+      targets: (data) => data.targets,
       platform: (data) => data.platform,
       badgeType: (data) => data.badgeType,
     },

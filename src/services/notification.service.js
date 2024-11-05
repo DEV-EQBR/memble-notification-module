@@ -14,16 +14,18 @@ class NotificationService {
   getServiceNotification({ key, language, data }) {
     const templateGroup = this.templates[language];
     const template = templateGroup[key];
+
     const payload = template.payload;
     const content = template.content;
 
     const payloadObject = new ServiceMessageBuilder()
-      .setAppId(data.appId)
-      .setServiceIdentifier(data.serviceIdentifier)
-      .setTargets(data.targets)
-      .setPlatform(data.platform)
-      .setBadgeType(data.badgeType)
+      .setAppId(payload.appId(data))
+      .setServiceIdentifier(payload.serviceIdentifier(data))
+      .setTargets(payload.targets(data))
+      .setPlatform(payload.platform(data))
+      .setBadgeType(payload.badgeType(data))
       .build();
+    console.log(payloadObject);
 
     const pushObject = new PushNotificationBuilder()
       .setTitle(content.title(data))
