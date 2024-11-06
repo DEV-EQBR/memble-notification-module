@@ -1,5 +1,6 @@
 const PushNotificationBuilder = require('./push-notification-builder.service');
 const ServiceMessageBuilder = require('./service-message-builder.service');
+const TopicMessageBuilder = require('./topic-message-builder.service');
 const UserTemplateEn = require('../templates/user-en.template');
 const UserTemplateKo = require('../templates/user-ko.template');
 const CouponTemplateEn = require('../templates/coupon-en.template');
@@ -39,7 +40,40 @@ class NotificationService {
       .setBadgeType(payload.badgeType(data))
       .build();
 
-    const pushObject = new PushNotificationBuilder()
+    const pushObject = this.buildPushObject(content, data);
+
+    return {
+      ...payloadObject,
+      ...pushObject,
+    };
+  }
+
+  generateTopicIdentifier({ baseIdentifier, language }) {
+    return `${baseIdentifier}_${language}`;
+  }
+
+  getTopicNotification({ domain, key, language, data }) {
+    const template = this.templates[domain][language][key];
+
+    const payload = template.payload;
+    const content = template.content;
+
+    const payloadObject = new TopicMessageBuilder()
+      .setAppId(payload.appId(data))
+      .setTargets(payload.targets(data))
+      .setBadgeType(payload.badgeType(data))
+      .build();
+
+    const pushObject = this.buildPushObject(content, data);
+
+    return {
+      ...payloadObject,
+      ...pushObject,
+    };
+  }
+
+  buildPushObject(content, data) {
+    return new PushNotificationBuilder()
       .setTitle(content.title(data))
       .setSubtitle(content.subtitle(data))
       .setBody(content.body(data))
@@ -51,11 +85,6 @@ class NotificationService {
       .setBodyLocArgs(content.bodyLocArgs(data))
       .setData(content.data(data))
       .build();
-
-    return {
-      ...payloadObject,
-      ...pushObject,
-    };
   }
 }
 
