@@ -20,7 +20,7 @@ const payload = {
     platform: 'MOBILE',
     badgeType: 'UPDATE',
     customData: {
-      url: `memble://home/${isMembership}/${isTicket}`,
+      url: `memble://main/${isMembership}/${isTicket}`,
     },
   },
 };
