@@ -5,7 +5,8 @@ const config = require('../config');
 const notificationService = new NotificationService();
 
 const languageCode = 'ko';
-const userOriginIds = [142803];
+const userOriginIds = [107];
+const eventId = 1;
 
 const payload = {
   domain: 'user',
@@ -18,7 +19,7 @@ const payload = {
     platform: 'MOBILE',
     badgeType: 'UPDATE',
     customData: {
-      url: 'memble://shop',
+      url: `memble://event-detail/${eventId}`,
     },
   },
 };
