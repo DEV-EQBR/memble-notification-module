@@ -4,18 +4,23 @@ const config = require('../config');
 
 const notificationService = new NotificationService();
 
+const languageCode = 'ko';
+const userOriginIds = [107];
+const isMembership = 1;
+const isTicket = 1;
+
 const payload = {
   domain: 'coupon',
   key: 'membershipRegistered',
-  language: 'ko',
+  language: languageCode,
   data: {
     appId: config.membleAppId,
     serviceIdentifier: 'memble',
-    targets: [142803],
+    targets: userOriginIds,
     platform: 'MOBILE',
     badgeType: 'UPDATE',
     customData: {
-      url: 'memble://home/membership=true&ticket=true',
+      url: `memble://home/${isMembership}/${isTicket}`,
     },
   },
 };
