@@ -4,14 +4,17 @@ const config = require('../config');
 
 const notificationService = new NotificationService();
 
+const languageCode = 'ko';
+const userOriginIds = [142803];
+
 const payload = {
   domain: 'user',
   key: 'identityVerificationSuccess',
-  language: 'ko',
+  language: languageCode,
   data: {
     appId: config.membleAppId,
     serviceIdentifier: 'memble',
-    targets: [142803],
+    targets: userOriginIds,
     platform: 'MOBILE',
     badgeType: 'UPDATE',
     customData: {
