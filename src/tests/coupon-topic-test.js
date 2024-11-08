@@ -5,26 +5,35 @@ const config = require('../config');
 const notificationService = new NotificationService();
 
 const languageCode = 'ko';
-const userOriginId = 107;
+const baseIdentifier = 'memble_ultra_taiwan_ticket_ultra_taiwan';
 const eventId = 1;
+const eventName = 'ULTRA TAIWAN';
+
+const topicIdentifier = notificationService.generateTopicIdentifier({
+  baseIdentifier,
+  language: languageCode,
+});
 
 const payload = {
-  domain: 'user',
-  key: 'identityVerificationSuccess',
+  domain: 'coupon',
+  key: 'ticketOpeningSoon',
   language: languageCode,
   data: {
     appId: config.membleAppId,
     serviceIdentifier: 'memble',
-    targets: [userOriginId],
+    targets: [topicIdentifier],
     platform: 'MOBILE',
     badgeType: 'UPDATE',
+    body: {
+      args: eventName,
+    },
     customData: {
-      url: `memble://event-detail/${eventId}`,
+      url: `memble://event-datail/${eventId}`,
     },
   },
 };
 
-const body = notificationService.getServiceNotification(payload);
+const body = notificationService.getTopicNotification(payload);
 
 console.log(body);
 

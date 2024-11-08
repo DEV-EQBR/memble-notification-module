@@ -21,6 +21,27 @@ const CouponTemplateKo = {
       data: (data) => data.customData,
     },
   },
+  ticketOpeningSoon: {
+    payload: {
+      appId: (data) => data.appId,
+      serviceIdentifier: (data) => data.serviceIdentifier,
+      targets: (data) => data.targets,
+      platform: (data) => data.platform,
+      badgeType: (data) => data.badgeType,
+    },
+    content: {
+      title: (data) => '티켓 오픈 알림',
+      subtitle: (data) => undefined,
+      body: (data) => `4시간 후 바로 ${data.body.args}가 오픈 됩니다!`,
+      image: (data) => undefined,
+      clickAction: (data) => undefined,
+      titleLocKey: (data) => undefined,
+      titleLocArgs: (data) => undefined,
+      bodyLocKey: (data) => undefined,
+      bodyLocArgs: (data) => undefined,
+      data: (data) => data.customData,
+    },
+  },
 };
 
 module.exports = CouponTemplateKo;

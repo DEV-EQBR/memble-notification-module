@@ -5,7 +5,7 @@ const config = require('../config');
 const notificationService = new NotificationService();
 
 const languageCode = 'ko';
-const userOriginIds = [107];
+const userOriginId = 107;
 const isMembership = 1;
 const isTicket = 1;
 
@@ -16,7 +16,7 @@ const payload = {
   data: {
     appId: config.membleAppId,
     serviceIdentifier: 'memble',
-    targets: userOriginIds,
+    targets: [userOriginId],
     platform: 'MOBILE',
     badgeType: 'UPDATE',
     customData: {
