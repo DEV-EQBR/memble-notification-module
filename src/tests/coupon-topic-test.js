@@ -5,7 +5,7 @@ const config = require('../config');
 const notificationService = new NotificationService();
 
 const languageCode = 'ko';
-const baseIdentifier = 'memble_ultra_taiwan_ticket_ultra_taiwan';
+const baseIdentifier = 'memble_ultra_taiwan_ticket_opening_20241116';
 const eventId = 1;
 const eventName = 'ULTRA TAIWAN';
 
@@ -20,10 +20,8 @@ const payload = {
   language: languageCode,
   data: {
     appId: config.membleAppId,
-    serviceIdentifier: 'memble',
     targets: [topicIdentifier],
-    platform: 'MOBILE',
-    badgeType: 'UPDATE',
+    badgeType: 'GET',
     body: {
       args: eventName,
     },
